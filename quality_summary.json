@@ -1,0 +1,18 @@
+{
+  "products": 82,
+  "inventory": 82,
+  "policy_before": 85,
+  "policy_after": 79,
+  "quarantined_rows": 5,
+  "inventory_without_policy": 3,
+  "issues_by_type": {
+    "category_case": 5,
+    "conflicting_policy": 2,
+    "exact_duplicate": 1,
+    "invalid_policy_range": 1,
+    "key_format": 1,
+    "missing_or_invalid_number": 1,
+    "unknown_product": 1
+  },
+  "rules": "See docs/DATA_RULES.md; generated errors are intentional fixtures, not defects claimed in original inventory."
+}

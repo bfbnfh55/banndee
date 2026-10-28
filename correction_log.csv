@@ -1,0 +1,13 @@
+﻿source,row,issue,key,before,after,action
+raw/products.csv,20,category_case,SKU-0019,storage,Storage,normalize case only
+raw/products.csv,39,category_case,SKU-0038,kitchen,Kitchen,normalize case only
+raw/products.csv,58,category_case,SKU-0057,bedding,Bedding,normalize case only
+raw/products.csv,77,category_case,SKU-0076,bedding,Bedding,normalize case only
+raw/products.csv,82,category_case,SKU-KT-104,kitchen,Kitchen,normalize case only
+generated/replenishment_policy.csv,2,key_format,SKU-0001, sku-0001 ,SKU-0001,strip and uppercase SKU
+generated/replenishment_policy.csv,3,missing_or_invalid_number,SKU-0002|BKK-DC,"{""product_id"": ""SKU-0002"", ""location_id"": ""BKK-DC"", ""min_qty"": """", ""target_qty"": ""30"", ""lead_days"": ""7"", ""updated_at"": ""2026-07-31T06:00:00+07:00"", ""source"": ""synthetic-policy-v1""}",,quarantine; human review
+generated/replenishment_policy.csv,4,invalid_policy_range,SKU-0003|BKK-DC,"{""product_id"": ""SKU-0003"", ""location_id"": ""BKK-DC"", ""min_qty"": ""-5"", ""target_qty"": ""30"", ""lead_days"": ""7"", ""updated_at"": ""2026-07-31T06:00:00+07:00"", ""source"": ""synthetic-policy-v1""}",,quarantine; human review
+generated/replenishment_policy.csv,84,exact_duplicate,SKU-0004|BKK-DC,2,1,collapse identical rows
+generated/replenishment_policy.csv,6,conflicting_policy,SKU-0005|BKK-DC,"{""product_id"": ""SKU-0005"", ""location_id"": ""BKK-DC"", ""min_qty"": ""10"", ""target_qty"": ""30"", ""lead_days"": ""7"", ""updated_at"": ""2026-07-31T06:00:00+07:00"", ""source"": ""synthetic-policy-v1""}",,quarantine all versions
+generated/replenishment_policy.csv,85,conflicting_policy,SKU-0005|BKK-DC,"{""product_id"": ""SKU-0005"", ""location_id"": ""BKK-DC"", ""min_qty"": ""10"", ""target_qty"": ""40"", ""lead_days"": ""7"", ""updated_at"": ""2026-07-31T06:00:00+07:00"", ""source"": ""synthetic-policy-v1""}",,quarantine all versions
+generated/replenishment_policy.csv,86,unknown_product,SKU-UNKNOWN|BKK-DC,"{""product_id"": ""SKU-UNKNOWN"", ""location_id"": ""BKK-DC"", ""min_qty"": ""10"", ""target_qty"": ""30"", ""lead_days"": ""7"", ""updated_at"": ""2026-07-31T06:00:00+07:00"", ""source"": ""synthetic-policy-v1""}",,quarantine; human review

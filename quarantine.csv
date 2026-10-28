@@ -1,0 +1,6 @@
+﻿product_id,location_id,min_qty,target_qty,lead_days,updated_at,source,reason
+SKU-0002,BKK-DC,,30,7,2026-07-31T06:00:00+07:00,synthetic-policy-v1,missing_or_invalid_number
+SKU-0003,BKK-DC,-5,30,7,2026-07-31T06:00:00+07:00,synthetic-policy-v1,invalid_policy_range
+SKU-0005,BKK-DC,10,30,7,2026-07-31T06:00:00+07:00,synthetic-policy-v1,conflicting_policy
+SKU-0005,BKK-DC,10,40,7,2026-07-31T06:00:00+07:00,synthetic-policy-v1,conflicting_policy
+SKU-UNKNOWN,BKK-DC,10,30,7,2026-07-31T06:00:00+07:00,synthetic-policy-v1,unknown_product

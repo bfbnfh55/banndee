@@ -1,0 +1,459 @@
+{
+  "executed_at": "2026-10-24T13:06:59.440623+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "tests_run": 30,
+  "failures": 0,
+  "errors": 0,
+  "cases": [
+    {
+      "test": "test_01_success_rule",
+      "input": "GET SKU-0001 demo",
+      "expected": [
+        200,
+        "low",
+        5,
+        25
+      ],
+      "actual": [
+        200,
+        "low",
+        5,
+        25
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_02_not_found",
+      "input": "GET absent SKU",
+      "expected": 404,
+      "actual": 404,
+      "result": "PASS"
+    },
+    {
+      "test": "test_03_unavailable",
+      "input": "GET risks unavailable=1",
+      "expected": 503,
+      "actual": 503,
+      "result": "PASS"
+    },
+    {
+      "test": "test_04_ambiguous_policy_blocks_write",
+      "input": "missing / negative / conflicting policies",
+      "expected": [
+        [
+          "review",
+          null,
+          409
+        ],
+        [
+          "review",
+          null,
+          409
+        ],
+        [
+          "review",
+          null,
+          409
+        ]
+      ],
+      "actual": [
+        [
+          "review",
+          null,
+          409
+        ],
+        [
+          "review",
+          null,
+          409
+        ],
+        [
+          "review",
+          null,
+          409
+        ]
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_05_stale_data_blocks",
+      "input": "old snapshot, live mode",
+      "expected": [
+        "review",
+        409
+      ],
+      "actual": [
+        "review",
+        409
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_06_create_edit_restart_persistence",
+      "input": "POST 25; PUT 28; restart; GET",
+      "expected": [
+        201,
+        200,
+        28,
+        "edited",
+        2,
+        2
+      ],
+      "actual": [
+        201,
+        200,
+        28,
+        "edited",
+        2,
+        2
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_07_invalid_quantity",
+      "input": "quantities -1,0,1.5,true,10001,string",
+      "expected": [
+        422,
+        422,
+        422,
+        422,
+        422,
+        422
+      ],
+      "actual": [
+        422,
+        422,
+        422,
+        422,
+        422,
+        422
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_08_duplicate_request",
+      "input": "POST same active SKU twice",
+      "expected": [
+        201,
+        409
+      ],
+      "actual": [
+        201,
+        409
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_09_concurrent_edit_version",
+      "input": "two edits use same version=1",
+      "expected": [
+        200,
+        409
+      ],
+      "actual": [
+        200,
+        409
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_10_cancel_retains_audit",
+      "input": "cancel; inspect audit; new request",
+      "expected": [
+        200,
+        "cancelled",
+        2,
+        201
+      ],
+      "actual": [
+        200,
+        "cancelled",
+        2,
+        201
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_11_cleaning_and_raw_unchanged",
+      "input": "rerun pipeline; compare SHA256",
+      "expected": [
+        85,
+        79,
+        5,
+        3,
+        true
+      ],
+      "actual": [
+        85,
+        79,
+        5,
+        3,
+        true
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_12_no_many_to_many_join",
+      "input": "cleaned joined inventory",
+      "expected": [
+        82,
+        82
+      ],
+      "actual": [
+        82,
+        82
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_13_cross_origin_write_blocked",
+      "input": "POST from unrelated Origin",
+      "expected": 403,
+      "actual": 403,
+      "result": "PASS"
+    },
+    {
+      "test": "test_14_healthy_stock_blocks_request",
+      "input": "POST SKU-0004 qty=40 > minimum=10",
+      "expected": 409,
+      "actual": 409,
+      "result": "PASS"
+    },
+    {
+      "test": "test_15_xss_stored_as_text",
+      "input": "note HTML retained literally; UI uses textContent",
+      "expected": [
+        201,
+        "<img src=x onerror=alert(1)>"
+      ],
+      "actual": [
+        201,
+        "<img src=x onerror=alert(1)>"
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_16_unknown_request_and_mode",
+      "input": "unknown request; invalid mode",
+      "expected": [
+        404,
+        400
+      ],
+      "actual": [
+        404,
+        400
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_17_runtime_invalid_quantity_stops",
+      "input": "negative inventory injected into test copy",
+      "expected": [
+        "review",
+        null,
+        409
+      ],
+      "actual": [
+        "review",
+        null,
+        409
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_18_zero_stock",
+      "input": "zero-stock item",
+      "expected": [
+        200,
+        "out",
+        30
+      ],
+      "actual": [
+        200,
+        "out",
+        30
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_19_review_resolves_and_persists",
+      "input": "review conflict; reopen Store; create draft",
+      "expected": [
+        200,
+        "low",
+        1,
+        201,
+        1
+      ],
+      "actual": [
+        200,
+        "low",
+        1,
+        201,
+        1
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_20_policy_validation",
+      "input": "invalid policy bounds/types/reason/reviewer/version",
+      "expected": [
+        422,
+        422,
+        422,
+        422,
+        422,
+        422,
+        422
+      ],
+      "actual": [
+        422,
+        422,
+        422,
+        422,
+        422,
+        422,
+        422
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_21_policy_concurrent_version",
+      "input": "version 0; stale 0; current 1",
+      "expected": [
+        200,
+        409,
+        200,
+        2,
+        2
+      ],
+      "actual": [
+        200,
+        409,
+        200,
+        2,
+        2
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_22_review_does_not_refresh_stock",
+      "input": "review policy with stale stock",
+      "expected": [
+        "review",
+        null,
+        409
+      ],
+      "actual": [
+        "review",
+        null,
+        409
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_23_demo_review_isolated_from_live",
+      "input": "save demo; read live",
+      "expected": [
+        0,
+        null
+      ],
+      "actual": [
+        0,
+        null
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_24_whatif_no_writes",
+      "input": "simulate target 50; compare DB/risk",
+      "expected": [
+        200,
+        45,
+        false,
+        true,
+        0,
+        0
+      ],
+      "actual": [
+        200,
+        45,
+        false,
+        true,
+        0,
+        0
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_25_whatif_blocks_ambiguous",
+      "input": "simulate unresolved SKU-0005",
+      "expected": 409,
+      "actual": 409,
+      "result": "PASS"
+    },
+    {
+      "test": "test_26_runtime_invalid_policy",
+      "input": "invalid number in cleaned policy",
+      "expected": [
+        200,
+        "review",
+        null
+      ],
+      "actual": [
+        200,
+        "review",
+        null
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_27_raw_and_quarantine_preserved",
+      "input": "review policy; compare raw/quarantine",
+      "expected": true,
+      "actual": true,
+      "result": "PASS"
+    },
+    {
+      "test": "test_28_provenance_hashes",
+      "input": "project provenance vs delivered raw",
+      "expected": [
+        200,
+        2,
+        true
+      ],
+      "actual": [
+        200,
+        2,
+        true
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_29_unknown_policy_and_history",
+      "input": "unknown product review/history",
+      "expected": [
+        404,
+        404
+      ],
+      "actual": [
+        404,
+        404
+      ],
+      "result": "PASS"
+    },
+    {
+      "test": "test_30_update_audit_evidence",
+      "input": "change policy; update request; inspect audit",
+      "expected": [
+        40,
+        1
+      ],
+      "actual": [
+        40,
+        1
+      ],
+      "result": "PASS"
+    }
+  ]
+}

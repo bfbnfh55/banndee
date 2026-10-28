@@ -1,0 +1,16 @@
+{
+  "original_archive": "BaanDee_Class1_Student-20261012T164749Z-1-001.zip",
+  "files": {
+    "data/raw/inventory_snapshot.csv": "65c588f1c830dd761c74be1b6bf969b5fd593ce7988b95073608393d1139bfef",
+    "data/raw/products.csv": "2d2a12e8c33a829a4cf909685cd8c1feedf7f8929289f01b09751fd96cd81cd5",
+    "data/generated/replenishment_policy.csv": "9fe2bfdaf8ddb55a1859106866aee35c51151a60b22a6649e1adfcf9c1b2ae4b"
+  },
+  "generation": "deterministic, no random sampling; scripts/prepare_data.py",
+  "synthetic_assumptions": {
+    "min_qty": 10,
+    "target_qty": 30,
+    "lead_days": 7,
+    "max_inventory_age_hours": 24,
+    "max_policy_age_days": 30
+  }
+}

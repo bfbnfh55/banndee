@@ -1,0 +1,31 @@
+﻿test,input,expected,actual,result
+test_01_success_rule,GET SKU-0001 demo,"[200, ""low"", 5, 25]","[200, ""low"", 5, 25]",PASS
+test_02_not_found,GET absent SKU,404,404,PASS
+test_03_unavailable,GET risks unavailable=1,503,503,PASS
+test_04_ambiguous_policy_blocks_write,missing / negative / conflicting policies,"[[""review"", null, 409], [""review"", null, 409], [""review"", null, 409]]","[[""review"", null, 409], [""review"", null, 409], [""review"", null, 409]]",PASS
+test_05_stale_data_blocks,"old snapshot, live mode","[""review"", 409]","[""review"", 409]",PASS
+test_06_create_edit_restart_persistence,POST 25; PUT 28; restart; GET,"[201, 200, 28, ""edited"", 2, 2]","[201, 200, 28, ""edited"", 2, 2]",PASS
+test_07_invalid_quantity,"quantities -1,0,1.5,true,10001,string","[422, 422, 422, 422, 422, 422]","[422, 422, 422, 422, 422, 422]",PASS
+test_08_duplicate_request,POST same active SKU twice,"[201, 409]","[201, 409]",PASS
+test_09_concurrent_edit_version,two edits use same version=1,"[200, 409]","[200, 409]",PASS
+test_10_cancel_retains_audit,cancel; inspect audit; new request,"[200, ""cancelled"", 2, 201]","[200, ""cancelled"", 2, 201]",PASS
+test_11_cleaning_and_raw_unchanged,rerun pipeline; compare SHA256,"[85, 79, 5, 3, true]","[85, 79, 5, 3, true]",PASS
+test_12_no_many_to_many_join,cleaned joined inventory,"[82, 82]","[82, 82]",PASS
+test_13_cross_origin_write_blocked,POST from unrelated Origin,403,403,PASS
+test_14_healthy_stock_blocks_request,POST SKU-0004 qty=40 > minimum=10,409,409,PASS
+test_15_xss_stored_as_text,note HTML retained literally; UI uses textContent,"[201, ""<img src=x onerror=alert(1)>""]","[201, ""<img src=x onerror=alert(1)>""]",PASS
+test_16_unknown_request_and_mode,unknown request; invalid mode,"[404, 400]","[404, 400]",PASS
+test_17_runtime_invalid_quantity_stops,negative inventory injected into test copy,"[""review"", null, 409]","[""review"", null, 409]",PASS
+test_18_zero_stock,zero-stock item,"[200, ""out"", 30]","[200, ""out"", 30]",PASS
+test_19_review_resolves_and_persists,review conflict; reopen Store; create draft,"[200, ""low"", 1, 201, 1]","[200, ""low"", 1, 201, 1]",PASS
+test_20_policy_validation,invalid policy bounds/types/reason/reviewer/version,"[422, 422, 422, 422, 422, 422, 422]","[422, 422, 422, 422, 422, 422, 422]",PASS
+test_21_policy_concurrent_version,version 0; stale 0; current 1,"[200, 409, 200, 2, 2]","[200, 409, 200, 2, 2]",PASS
+test_22_review_does_not_refresh_stock,review policy with stale stock,"[""review"", null, 409]","[""review"", null, 409]",PASS
+test_23_demo_review_isolated_from_live,save demo; read live,"[0, null]","[0, null]",PASS
+test_24_whatif_no_writes,simulate target 50; compare DB/risk,"[200, 45, false, true, 0, 0]","[200, 45, false, true, 0, 0]",PASS
+test_25_whatif_blocks_ambiguous,simulate unresolved SKU-0005,409,409,PASS
+test_26_runtime_invalid_policy,invalid number in cleaned policy,"[200, ""review"", null]","[200, ""review"", null]",PASS
+test_27_raw_and_quarantine_preserved,review policy; compare raw/quarantine,True,True,PASS
+test_28_provenance_hashes,project provenance vs delivered raw,"[200, 2, true]","[200, 2, true]",PASS
+test_29_unknown_policy_and_history,unknown product review/history,"[404, 404]","[404, 404]",PASS
+test_30_update_audit_evidence,change policy; update request; inspect audit,"[40, 1]","[40, 1]",PASS

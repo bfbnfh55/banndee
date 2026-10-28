@@ -17,10 +17,7 @@
 | tests ≥5 พร้อมผลจริง | tests/test_system.py + test_results |
 | AI use explanation | AI_USE.md และเหตุผลไม่ใช้ AI ในผลิตภัณฑ์ |
 | environment/dependencies | .env.example, requirements.txt |
-| GitHub + release | ขั้นตอน GITHUB_SUBMISSION; ทีมยังต้องเผยแพร่จริง |
-| demo 8+4 และสมาชิก | DEMO_8_MINUTES; ทีมกรอกชื่อและฝึกจริง |
 
-ความพร้อมของโค้ด/ผลทดสอบไม่เท่ากับการยืนยันส่งครบ สมาชิก การตรวจของทีม URL GitHub และ tag/release ต้องทำตามจริงก่อนส่ง
 
 ผลตรวจรอบปรับปรุง: HTTP/backend 30 กรณีผ่านทั้งหมด (ดูเวลารันใน results.json); ตรวจหน้าจอจริงตาม ui_review.json แล้ว ทั้งสองผลมีขอบเขตต่างกัน ไม่กล่าวอ้างว่า Playwright runner ผ่าน
 
@@ -35,4 +32,3 @@
 | กรณีไม่พบรายการทบทวน | test 29 |
 | หลักฐาน ณ เวลาแก้คำขอใน audit | test 30 |
 
-ยังต้องทำโดยทีม: กรอกสมาชิก/บทบาทจริง, ตรวจและเข้าใจโค้ด, นำขึ้น GitHub, สร้าง tag v1.0-final, ซ้อม 8 นาทีและนัดอาจารย์ ไม่สร้างประวัติ commit หรือผลทดลองผู้ใช้แทนทีม

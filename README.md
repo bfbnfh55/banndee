@@ -239,4 +239,3 @@ API เพิ่ม: `GET /api/project`, `GET /api/policy-history/{SKU}?mode=dem
 - [ส่วนที่เพิ่มจากไฟล์อาจารย์](docs/WHAT_WE_ADDED.md)
 - [บทพูดนำเสนอ 8 นาที](docs/PRESENTATION_SCRIPT_TH.md)
 - [สไลด์ Canva](https://canva.link/ajr69bo95yfoclk)
-- [ขั้นตอนขึ้น GitHub](UPLOAD_TO_GITHUB_TH.md)

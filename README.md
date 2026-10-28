@@ -1,3 +1,12 @@
+## Download and run locally
+
+1. Click Code > Download ZIP, then extract the ZIP.
+2. Install Python 3.10 or newer if needed.
+3. Double-click START_WINDOWS_FIXED.bat.
+4. Open http://127.0.0.1:8000 and keep the command window open.
+
+GitHub Pages cannot run this Python API or SQLite backend. Run the full application locally.
+
 # BaanDee StockGuard
 
 ระบบตรวจสอบสินค้าที่เสี่ยงขาดสต็อกและบันทึกคำขอเติมสินค้า — Final Project: BaanDee Data Product Prototype

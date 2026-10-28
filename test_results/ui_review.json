@@ -1,0 +1,101 @@
+{
+  "executed_at": "2026-10-24T13:08:06.207872+00:00",
+  "method": "Codex in-app browser UI control; observed accessibility state and screenshot, not legacy Playwright runner",
+  "cases": [
+    {
+      "name": "initial_inventory",
+      "input": "Open demo",
+      "expected": "82 products, 20 low/out, 3 review, 0 drafts",
+      "actual": "82 products, 20 low/out, 3 review, 0 drafts",
+      "result": "PASS"
+    },
+    {
+      "name": "review_queue",
+      "input": "Open review queue",
+      "expected": "SKU-0002, SKU-0003, SKU-0005",
+      "actual": "SKU-0002, SKU-0003, SKU-0005",
+      "result": "PASS"
+    },
+    {
+      "name": "blocked_request",
+      "input": "Open SKU-0005 before review",
+      "expected": "Review; no request form",
+      "actual": "Review; no request form",
+      "result": "PASS"
+    },
+    {
+      "name": "policy_review",
+      "input": "Save 10/30/7, reviewer and reason for SKU-0005",
+      "expected": "Low; suggestion 29; policy v1; audit present",
+      "actual": "Low; suggestion 29; policy v1; audit present",
+      "result": "PASS"
+    },
+    {
+      "name": "what_if",
+      "input": "Simulate target 40 on SKU-0005",
+      "expected": "29 -> 39; actual evidence target remains 30",
+      "actual": "29 -> 39; actual evidence target remains 30",
+      "result": "PASS"
+    },
+    {
+      "name": "create",
+      "input": "Save request after What-if",
+      "expected": "Request #1 quantity 29 version 1",
+      "actual": "Request #1 quantity 29 version 1",
+      "result": "PASS"
+    },
+    {
+      "name": "edit",
+      "input": "Edit quantity to 28",
+      "expected": "Request #1 quantity 28 version 2",
+      "actual": "Request #1 quantity 28 version 2",
+      "result": "PASS"
+    },
+    {
+      "name": "reload",
+      "input": "Reload browser; open requests",
+      "expected": "Request #1 quantity 28 version 2 remains",
+      "actual": "Request #1 quantity 28 version 2 remains",
+      "result": "PASS"
+    },
+    {
+      "name": "unavailable",
+      "input": "Check outage and open review queue",
+      "expected": "503, stock metrics cleared, queue has no actionable items",
+      "actual": "503, stock metrics cleared, queue has no actionable items",
+      "result": "PASS"
+    },
+    {
+      "name": "live_freshness",
+      "input": "Uncheck outage; select live",
+      "expected": "82 reviews, zero low/out",
+      "actual": "82 reviews, zero low/out",
+      "result": "PASS"
+    },
+    {
+      "name": "provenance",
+      "input": "Open source page",
+      "expected": "Two raw sources each 82 rows with matching hashes",
+      "actual": "Two raw sources each 82 rows with matching hashes",
+      "result": "PASS"
+    },
+    {
+      "name": "rehearsal_restart",
+      "input": "Stop and restart --demo-session; reload",
+      "expected": "Storage warning, 0 drafts, 3 reviews",
+      "actual": "Storage warning, 0 drafts, 3 reviews",
+      "result": "PASS"
+    },
+    {
+      "name": "quality_evidence",
+      "input": "Open quality page",
+      "expected": "Before/after log and 5 quarantined rows",
+      "actual": "Before/after log and 5 quarantined rows",
+      "result": "PASS"
+    }
+  ],
+  "limitations": [
+    "Desktop viewport only; mobile layout not tested in this run",
+    "Cross-process persistent storage is covered by backend restart test 06; this browser session used an isolated rehearsal database"
+  ]
+}

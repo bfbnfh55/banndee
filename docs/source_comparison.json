@@ -1,0 +1,19 @@
+{
+  "teacher_archive": "BaanDee_Class1_Student-20261012T164749Z-1-001.zip",
+  "raw_files": [
+    {
+      "file": "data/raw/inventory_snapshot.csv",
+      "rows": 82,
+      "sha256": "65c588f1c830dd761c74be1b6bf969b5fd593ce7988b95073608393d1139bfef",
+      "teacher_sha256": "65c588f1c830dd761c74be1b6bf969b5fd593ce7988b95073608393d1139bfef",
+      "matches_teacher": true
+    },
+    {
+      "file": "data/raw/products.csv",
+      "rows": 82,
+      "sha256": "2d2a12e8c33a829a4cf909685cd8c1feedf7f8929289f01b09751fd96cd81cd5",
+      "teacher_sha256": "2d2a12e8c33a829a4cf909685cd8c1feedf7f8929289f01b09751fd96cd81cd5",
+      "matches_teacher": true
+    }
+  ]
+}
